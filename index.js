@@ -2,11 +2,12 @@ const { error } = require('console');
 const express = require('express');
 const mongoose = require('mongoose');
 const docactions = require('./routes/docactions');
+const useractions = require('./routes/useractions')
 const cors = require('cors');
-
 require('dotenv').config();
 
-const app = express();
+const app = express();//
+
 
 app.use(express.json()); //Middleware to convert http readable stream to json
 app.use(cors({ origin: '*' }));  //To accept cross origin requests from all domains
@@ -18,12 +19,13 @@ mongoose.connect(process.env.MONGODB_URI)        //Using ODM(object document map
 .catch((err)=>{console.log(err)});
 
 
-app.get('/',(req,res)=>{  //Just for displaying the plain text if the user visits Fronted
+app.get('/',(req,res)=>{  //Just for displaying the plain text if the user visits URL
     res.send("This is Backend of Node.js server for Talkingdocs Website.")
 })
 
-app.use('/actions',docactions);  // docactions acting as a middleware for all the routes 
+app.use('/actions',docactions);  // docactions acting as a middleware for all the '/actions' routes 
 
+app.use('/user',useractions)  //useractions acting as a middleware for all the '/user' routes
 
 
 app.listen(PORT,()=>{
