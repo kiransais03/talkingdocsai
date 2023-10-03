@@ -1,7 +1,9 @@
 const express = require('express');
 const multer = require('multer');  //File handler 
+const {isAuth} = require('../middlewares/Authmiddleware');
 
 const {analyse,queryfromuser} = require('../implementers/docactionimplementer')
+const {addpdfLocation} = require("../implementers/userdbfunctions");
 
 const app = express();
 
@@ -17,7 +19,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage});
 
-app.post("/uploadpdfs",upload.array('pdfs',1),(req,res)=>{  //Endpoint of Pdf files upload
+app.post("/uploadpdfs",isAuth,upload.array('pdfs',1),async (req,res)=>{  //Endpoint of Pdf files upload
 
     try {
        if(req.files.length===0)
@@ -25,7 +27,8 @@ app.post("/uploadpdfs",upload.array('pdfs',1),(req,res)=>{  //Endpoint of Pdf fi
         throw new Error("Files upload failed");
        }
 
-       console.log(req.files);
+       console.log("Hello",req.files);
+       await addpdfLocation("./pdfs/"+""+req.files[0].filename,req.locals.email);
        res.status(201).send({
            status:200,
            message:"Pdf files uploaded successfully",
@@ -41,8 +44,8 @@ app.post("/uploadpdfs",upload.array('pdfs',1),(req,res)=>{  //Endpoint of Pdf fi
 })
 
 
-app.get("/analyse",async (req,res)=>{   //Analyse the pdf data
-  let relevantDocs =await analyse();
+app.get("/analyse",isAuth,async (req,res)=>{   //Analyse the pdf data
+  let relevantDocs =await analyse(req.locals.email);
 
   if(Array.isArray(relevantDocs) && relevantDocs[0]==="ERROR")  //If any error is present
   {
@@ -60,7 +63,7 @@ app.get("/analyse",async (req,res)=>{   //Analyse the pdf data
 })
 
 
-app.post("/query",async (req,res)=>{  //Get query answer from LLM
+app.post("/query",isAuth,async (req,res)=>{  //Get query answer from LLM
     let querydata = await queryfromuser(req.body.query);
 
     if(Array.isArray(querydata) && querydata[0]==="ERROR")  //If any error is present

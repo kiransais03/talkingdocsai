@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");  //Used to encypt the passwords
-const Joi = require("joi");  //Used for input data validations
+const Joi = require("joi");  //joi package is Used for input data validations
 const jwt = require("jsonwebtoken");  //Its an authentication type,function used to verify token
 const { TRUE, ERR } = require("../constants");
 const { verifyUsernameAndEmailExisits } = require("./verifyUsernameAndEmailExisits");
@@ -40,7 +40,7 @@ const registerUser = async (req, res) => {
   } else if (isUserExisiting === ERR) {
     return res.status(400).send({
       status: 400,
-      message: "Err: verifyUsernameAndEmailExisits failed",
+      message: "Err: Verification for UsernameAndEmailExisits failed",
     });
   }
 
@@ -78,7 +78,7 @@ const loginUser = async (req, res) => {
 
   let userData;
 
-  if (isEmail.error) {
+  if (isEmail.error) {         //If the user given loginId as username instead of Email,then get details of user with Username
     userData = await getUserDataFromUsername(loginId);
     if (userData.err) {
       return res.status(400).send({
@@ -88,7 +88,7 @@ const loginUser = async (req, res) => {
       });
     }
   } else {
-    userData = await getUserDataFromEmail(loginId);
+    userData = await getUserDataFromEmail(loginId);  //If the email is correct,then get user details with Email
 
     if (userData.err) {
       return res.status(400).send({
@@ -99,7 +99,7 @@ const loginUser = async (req, res) => {
     }
   }
 
-  if (!userData.data) {
+  if (!userData.data) {         //If user data not found
     return res.status(400).send({
       status: 400,
       message: "No user found! Please register",
@@ -118,14 +118,14 @@ const loginUser = async (req, res) => {
     });
   }
 
-  const payload = {
+  const payload = {                   //Payload for generating JWT token
     username: userData.data.username,
     name: userData.data.name,
     email: userData.data.email,
     userId: userData.data._id,
   };
 
-  const token = await jwt.sign(payload, process.env.JWT_SECRET);  //After login creating the JST token and sending to UI
+  const token = await jwt.sign(payload, process.env.JWT_SECRET);  //After login creating the JWT token using Payload and JWT Secret Key and sending to UI
 
   res.status(200).send({
     status: 200,

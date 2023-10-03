@@ -20,6 +20,10 @@ const UserSchema = new Schema({
     type: String,
     require: true,
   },
+  pdflocation : {
+    type:String,
+    require:false,
+  }
 });
 
 module.exports = mongoose.model("users", UserSchema);

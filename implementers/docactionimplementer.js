@@ -11,13 +11,16 @@ const { GooglePaLM } = require("langchain/llms/googlepalm");
 const { VectorDBQAChain } = require("langchain/chains");
 const { Pinecone } = require('@pinecone-database/pinecone');
 
+const {getUserDataFromEmail} = require('../implementers/userdbfunctions');
+
 
 //--Analyse Function to extract text from pdf and add it to vectorDB with GooglePalm LLM Embeddings
-const analyse =async ()=>{ 
+const analyse =async (email)=>{ 
     try {
-
+  const currUserdata =await getUserDataFromEmail(email);
       //Text loader from pdf
-const loader = new PDFLoader('./pdfs/1696267101403_GUDURU KIRAN SAI RESUME.pdf');
+      const pdflocation = currUserdata.data.pdflocation;
+const loader = new PDFLoader(pdflocation);
 
 const docsdata = await loader.load();
 

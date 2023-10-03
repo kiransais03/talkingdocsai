@@ -1,11 +1,13 @@
 const jwt = require("jsonwebtoken");
 
 const isAuth = (req, res, next) => {
-  const token = req.headers["Token-DocsAI"];
+  const tokenstring = req.headers["token-docsai"];  //Get the JWT token from API call Headers
+  const token = tokenstring.split(' ')[1];
+  console.log(token);
   let verified;
 
   try {
-    verified = jwt.verify(token, process.env.JWT_SECRET);
+    verified = jwt.verify(token, process.env.JWT_SECRET); //Verification of JWT token if success it returns Payload data object else throws error
   } catch (err) {
     return res.status(400).send({
       status: 400,
@@ -15,7 +17,8 @@ const isAuth = (req, res, next) => {
   }
 
   if (verified) {
-    req.locals = verified;
+    req.locals = verified;  //Adding the Payload data object received from verified to Request(req.locals) to that particular request.
+                            //This is added to req because,curretly we are in Middleware.After the middleware we can use the Payload data.
     next();
   } else {
     res.status(401).send({
