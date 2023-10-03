@@ -1,8 +1,15 @@
 {
     "version": 2,
- 
-    "routes": [
-        { "src": "/(.*)", "dest": "/" }
+    "builds": [
+      {
+        "src": "./index.js",
+        "use": "@vercel/node"
+      }
     ],
-    "devCommand": "node index.js"
-}
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/"
+      }
+    ]
+  }
