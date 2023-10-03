@@ -1,5 +1,8 @@
  [build]
- command = "npm install --force && npm start index.js"
+ command = "npm install --force"
+
+ [dev]
+  command = "npm start index.js" 
 
 [[redirects]]
 from="/*"
