@@ -1,5 +1,7 @@
 {
     "version": 2,
+    "buildCommand": "echo hello",
+    "installCommand": "npm ci --force",
     "builds": [
       {
         "src": "./index.js",
