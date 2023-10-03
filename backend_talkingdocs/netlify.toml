@@ -5,6 +5,4 @@
   command = "npm start index.js" 
 
 [[redirects]]
-from="/*"
-to="/"
-status=200
+/* /index.html 200
