@@ -1,0 +1,28 @@
+
+.login-page-redirect span {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-page-redirect{
+    text-align: center;
+}
+
+.input-wrapper-form {  
+    max-width: 50vw;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;   
+    /* margin-top:1rem; */
+    box-sizing: border-box;
+  }
+
+  .input-wrapper h1  {
+    font-size: 1.5rem;
+    text-align:center;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }

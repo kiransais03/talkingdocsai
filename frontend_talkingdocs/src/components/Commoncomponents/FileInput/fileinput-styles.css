@@ -1,0 +1,31 @@
+.custom-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    background-color: var(--theme);
+    border: 2px solid var(--purple-grey);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-size:1.5rem;
+    width:60%;
+    height: 4rem;
+    margin: 0.6rem;
+    font-weight: 500;
+}
+
+.custom-input:focus {
+    outline: none;
+    border-color: var(--white);
+}
+
+.fileinput-label {
+    color: orange;
+    cursor: pointer;
+}
+
+
+.uploadicon {
+    width: 50px;
+    height: 50px;
+}

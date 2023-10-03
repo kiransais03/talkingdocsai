@@ -1,0 +1,8 @@
+.signup-page-redirect span {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.signup-page-redirect{
+    text-align: center;
+}

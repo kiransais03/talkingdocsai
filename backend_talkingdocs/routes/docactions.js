@@ -35,10 +35,13 @@ app.post("/uploadpdfs",isAuth,upload.array('pdfs',1),async (req,res)=>{  //Endpo
        })
     }
     catch(error) {
+        console.log("Error ",error)
         res.status(400).send({
             status:400,
-            message:"Failed to upload the pdfs"
+            message:"Failed to upload the pdfs",
+            errobj :error,
         })
+        
     }
     
 })
