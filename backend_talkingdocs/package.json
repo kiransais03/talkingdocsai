@@ -6,7 +6,8 @@
   "scripts": {
      "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "npm run vercel-build":"node index.js"
+    "npm run vercel-build":"node index.js",
+    "npm run build" :"node index.js"
   },
   "author": "",
   "license": "ISC",
