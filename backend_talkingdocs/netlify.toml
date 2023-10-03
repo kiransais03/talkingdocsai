@@ -1,8 +1,10 @@
  [build]
  command = "npm install --force"
+ functions = "lambda"
+  publish = "public"
 
- [dev]
-  command = "npm start index.js" 
+[dev]
+  command = "npm run start:dev"
 
 [[redirects]]
-/* /index.html 200
+  /* /.netlify/functions/app 200
