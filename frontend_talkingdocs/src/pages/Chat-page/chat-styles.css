@@ -3,4 +3,27 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: peru;
+    width: 100%;
+    margin: 0 auto;
 }
+
+.querysearch-div {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    font-size: 20px;
+}
+
+.colchange {
+    font-family: monospace;
+    font-size: 3em;
+    animation: color-change 1s infinite;
+    background-color: yellowgreen;
+  }
+  
+  @keyframes color-change {
+    0% { color: red; }
+    50% { color: blue; }
+    100% { color: red; }
+  }

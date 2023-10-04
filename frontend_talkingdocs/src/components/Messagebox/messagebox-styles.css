@@ -1,0 +1,18 @@
+/* .msg-box {
+    overflow-y: scroll;
+    width: 100%;
+    word-break: break-all;
+    max-width: 1600px;
+} */
+
+
+  
+.scroll {
+    display: block;
+    border: 0px solid red;
+    padding: 5px;
+    margin-top: 5px;
+    width: 100%;
+    height: 100vh;
+    word-break: break-all;
+}

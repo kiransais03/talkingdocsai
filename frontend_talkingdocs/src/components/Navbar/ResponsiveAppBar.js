@@ -11,11 +11,13 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+// import AdbIcon from '@mui/icons-material/Adb';
+import SpeakerNotesTwoToneIcon from '@mui/icons-material/SpeakerNotesTwoTone';
 import { Logout } from '@mui/icons-material';
 import { useNavigate,useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {useState,useEffect} from "react";
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const pages = ['Signup','Login','Chat'];
 const settings = ['Logout'];
@@ -66,6 +68,7 @@ function ResponsiveAppBar() {
 
   const logout = ()=>{
     localStorage.removeItem('token');
+    localStorage.removeItem('currPdf')
     setRerender("1")
     navigate('/login');
   }
@@ -74,23 +77,25 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <SpeakerNotesTwoToneIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
+            href="/"
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              // fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'violet',
+              // background: 'rgb(160,82,255)',
+                background: 'linear-gradient(69deg, rgba(160,82,255,1) 0%, rgba(244,81,0,0.865983893557423) 81%)',
               textDecoration: 'none',
             }}
           >
-            LOGO
+            DOC.Talk Chat Asst
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -129,12 +134,11 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <SpeakerNotesTwoToneIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -163,7 +167,7 @@ function ResponsiveAppBar() {
           <Box style={hide?{display:"none",flexGrow: "0"}:{display:"block",flexGrow: "0"}}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="" />
               </IconButton>
             </Tooltip>
             <Menu

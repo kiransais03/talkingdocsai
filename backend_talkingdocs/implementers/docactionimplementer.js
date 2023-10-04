@@ -52,7 +52,7 @@ const docsdata = await loader.load();
 
   await pinecone.deleteIndex(process.env.PINECONE_INDEX);
 
-  await new Promise((resolve)=>{ setTimeout(()=>{resolve()},12000) })  //Delay for deleting the old index and creating new index
+  await new Promise((resolve)=>{ setTimeout(()=>{resolve()},20000) })  //Delay for deleting the old index and creating new index
   
     await pinecone.createIndex({
       name: process.env.PINECONE_INDEX,

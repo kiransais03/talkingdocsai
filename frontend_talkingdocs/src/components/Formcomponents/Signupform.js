@@ -8,10 +8,11 @@ import axios from "axios";
 function Signupform () {
 
     let [fname,setFname]=useState("");
+    let [username,setUsername]=useState("");
     let [email,setEmail]=useState("");
     let [password,setPassword]=useState("");
     let [confirmpassword,setConfirmpassword]=useState("");
-    let [username,setUsername]=useState("");
+
 
     let [loading,setLoading] = useState(false);
 
@@ -72,6 +73,7 @@ else {
 
     return(<>
             <Input type="text" placeholder="Full Name" state={fname} setState={setFname} required={true}/>
+            <Input type="text" placeholder="User Name" state={username} setState={setUsername} required={true}/>
             <Input type="text" placeholder="Email" state={email} setState={setEmail} required={true}/>
             <Input type="password" placeholder="Password" state={password} setState={setPassword} required={true}/>
             <Input type="password" placeholder="Confirm Password" state={confirmpassword} setState={setConfirmpassword} required={true}/>

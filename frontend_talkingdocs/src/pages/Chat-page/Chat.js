@@ -16,6 +16,7 @@ function Chat() {
   let [pdffile,setPdffile]=useState("");
 
   let [loading,setLoading]=useState(false);
+  let [loading2,setLoading2]=useState(false);
 
   function pdffileupload(files) {
     setPdffile(files);
@@ -40,7 +41,8 @@ function Chat() {
            setLoading(false);
            toast.success('Document Uploading Completed');
            console.log("Document Uploading Completed.")
-           analysedoc();
+           await analysedoc();
+           localStorage.setItem('currPdf',pdffile[0].name)
    }
    catch(error) {
     setLoading(false);
@@ -59,7 +61,8 @@ function Chat() {
 
            setLoading(false);
            toast.success('Document Analysing Completed');
-           console.log("Document Analysing Completed.")
+           console.log("Document Analysing Completed.");
+           
            
      }
      catch(error){
@@ -71,6 +74,42 @@ function Chat() {
  
  }
 
+ let [queryinput,setQueryinput]= useState("");
+
+ let [qnaarray,setQnaarray] = useState([]);
+
+
+ async function queryfunc (inputq) {
+  try {
+    console.log("Querying ...")
+    setLoading2(true);
+    setQueryinput("")
+    setQnaarray((qnaarray)=>{return [...qnaarray,"Q."+inputq+"?"]})
+    
+    let queryoutput = await axios.post('http://localhost:8081/actions/query',{
+      "query":inputq
+  },{headers:{"Token-DocsAI":`Bearer ${localStorage.getItem('token')}`}})
+
+      setLoading2(false);
+
+      console.log(queryoutput,"this is op",qnaarray)
+
+       setQnaarray((qnaarray)=>{return [...qnaarray,"Ans."+queryoutput.data.querydata.text]})
+      toast.success('Document Querying Completed');
+      console.log("Document Querying Completed.",qnaarray,queryoutput)
+      
+      
+  }
+  catch(error) {
+    setLoading2(false);
+    console.log("heleo",error)
+    toast.error(`Error:${error.response.data.message}`);
+    console.log("Some Error Occured :",error.response.data.message)
+  }
+
+ }
+
+
   useEffect(()=>{
     if(!localStorage.getItem('token'))
     {
@@ -79,24 +118,41 @@ function Chat() {
     }
   },[])
 
+  
+
   return (<>
-    <ResponsiveAppBar/>
+
     <div className='chatcontents'>
+    <ResponsiveAppBar/>
       <Fileinput text="Click To Select PDF File"  accept="application/pdf" id="banner-img" filehandlingfunc={pdffileupload}/>
-      
-<div style={{display:"flex",columnGap:"60px"}}>
+     {localStorage.getItem('currPdf') && <span className='colchange' style={{fontSize:"15px",display:"flex",justifyContent:"center",alignItems:"center"}}>Current Loaded File:{localStorage.getItem('currPdf')}</span> }
+<div>
       {/* //Upload Button */}
       
-<button onClick={uploadpdf} type="button" class="btn btn-primary">{loading ? <div><div className="spinner-border spinner-border-sm" role="status">
+<button onClick={uploadpdf} type="button" className="btn btn-primary">{loading ? <div><div className="spinner-border spinner-border-sm" role="status">
   <span className="visually-hidden">Loading...</span>
 </div>
 <div className="spinner-grow spinner-grow-sm" role="status">
   <span className="visually-hidden">Loading...</span>
-</div></div>: "Upload & Anlyse Doc"}</button>
+</div></div>: "Upload & Anlyse Doc"}</button> <span style={{fontSize:"10px",display:"flex",justifyContent:"center",alignItems:"center"}}>(Analysing may take 15-20 secs)</span>
 </div>
-      <Messagebox/>
-      <Input type='text' required={true} placeholder='Enter your query from pdf data'/>
-    </div>
+
+{/* // */}
+
+</div>
+<div className='querysearch-div'>
+      <form style={{ display: 'flex',flexDirection:"column",width:"100vw",justifyContent:"space-around",maxWidth:"1594px",columnGap:"5px" }} onSubmit={(e)=>{e.preventDefault(); queryfunc(queryinput)}}>
+      <input className='custom-input1' style={{backgroundColor:"whitesmoke"}}  required type="text" placeholder="Enter your query realted to Pdf" value={queryinput} onChange={(e)=>{setQueryinput(e.target.value)}}/>
+      <button disabled={localStorage.getItem('currPdf')?false:true} type="submit" className="btn btn-primary">{loading2 ? <div><div className="spinner-border spinner-border-sm" role="status">
+  <span className="visually-hidden">Loading...</span>
+</div>
+<div className="spinner-grow spinner-grow-sm" role="status">
+  <span className="visually-hidden">Loading...</span>
+</div></div>: "AskAI"}</button>
+      </form>
+      </div>
+      <Messagebox qnadata={qnaarray}  />
+
     </>
   )
 }

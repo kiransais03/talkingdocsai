@@ -12,7 +12,8 @@ import Homepage from "./pages/Home-page/Homepage";
 
 function App() {
   return (
-    <div className="main">
+    // <div className="main">
+    <>
       <ToastContainer/>
       {/* <ResponsiveAppBar/> */}
       <Routes>
@@ -22,7 +23,8 @@ function App() {
         <Route path='/chat' element={<Chat/>}/>
         <Route pathe="*" element={<Homepage/>}/>
       </Routes>
-    </div>
+    {/* </div> */}
+    </>
   );
 }
 

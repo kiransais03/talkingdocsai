@@ -69,6 +69,8 @@ app.get("/analyse",isAuth,async (req,res)=>{   //Analyse the pdf data
 app.post("/query",isAuth,async (req,res)=>{  //Get query answer from LLM
     let querydata = await queryfromuser(req.body.query);
 
+    console.log("Query Data",querydata)
+
     if(Array.isArray(querydata) && querydata[0]==="ERROR")  //If any error is present
   {
     res.status(400).send({
