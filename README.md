@@ -75,8 +75,9 @@
 
 ### Deployed Links : Using Vercel Hosting
 
-#### --Backend : https://talkingdocsai.vercel.app/
-  (The issue with vercel is it will not work as a server.If we make a request it just start server and provide response again it will stop.Becasue of this MongoDb is causing issues)
+#### --Backend : https://talkingdocsai-backend.onrender.com/
+(It is working fine)
+  <!-- (The issue with vercel is it will not work as a server.If we make a request it just start server and provide response again it will stop.Becasue of this MongoDb is causing issues) -->
 
 #### --Frontend : https://talkingdocsai-frontend.vercel.app/
   (It is working fine)

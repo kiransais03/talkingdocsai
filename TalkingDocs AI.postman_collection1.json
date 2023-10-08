@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8081/actions/uploadpdfs",
+			"name": "https://talkingdocsai-backend.onrender.com/actions/uploadpdfs",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -31,12 +31,13 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8081/actions/uploadpdfs",
-					"protocol": "http",
+					"raw": "https://talkingdocsai-backend.onrender.com/actions/uploadpdfs",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"talkingdocsai-backend",
+						"onrender",
+						"com"
 					],
-					"port": "8081",
 					"path": [
 						"actions",
 						"uploadpdfs"
@@ -46,7 +47,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8081/actions/analyse",
+			"name": "https://talkingdocsai-backend.onrender.com/actions/analyse",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -57,12 +58,13 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8081/actions/analyse",
-					"protocol": "http",
+					"raw": "https://talkingdocsai-backend.onrender.com/actions/analyse",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"talkingdocsai-backend",
+						"onrender",
+						"com"
 					],
-					"port": "8081",
 					"path": [
 						"actions",
 						"analyse"
@@ -72,7 +74,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8081/actions/query",
+			"name": "https://talkingdocsai-backend.onrender.com/actions/query",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -92,12 +94,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/actions/query",
-					"protocol": "http",
+					"raw": "https://talkingdocsai-backend.onrender.com/actions/query",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"talkingdocsai-backend",
+						"onrender",
+						"com"
 					],
-					"port": "8081",
 					"path": [
 						"actions",
 						"query"
@@ -107,7 +110,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8081/user/register",
+			"name": "https://talkingdocsai-backend.onrender.com/user/register",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -121,12 +124,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/user/register",
-					"protocol": "http",
+					"raw": "https://talkingdocsai-backend.onrender.com/user/register",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"talkingdocsai-backend",
+						"onrender",
+						"com"
 					],
-					"port": "8081",
 					"path": [
 						"user",
 						"register"
@@ -136,7 +140,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8081/user/login",
+			"name": "https://talkingdocsai-backend.onrender.com/user/login",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -150,12 +154,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/user/login",
-					"protocol": "http",
+					"raw": "https://talkingdocsai-backend.onrender.com/user/login",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"talkingdocsai-backend",
+						"onrender",
+						"com"
 					],
-					"port": "8081",
 					"path": [
 						"user",
 						"login"
