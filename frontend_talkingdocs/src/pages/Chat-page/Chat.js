@@ -36,7 +36,7 @@ function Chat() {
 
            console.log(formData,"file",pdffile[0])
 
-         let uploadresponse = await axios.post('http://localhost:8081/actions/uploadpdfs',formData,{headers:{'Content-Type': 'multipart/form-data',"Token-DocsAI":`Bearer ${localStorage.getItem('token')}`}})
+         let uploadresponse = await axios.post(`${process.env.REACT_APP_URL}/actions/uploadpdfs`,formData,{headers:{'Content-Type': 'multipart/form-data',"Token-DocsAI":`Bearer ${localStorage.getItem('token')}`}})
 
            setLoading(false);
            toast.success('Document Uploading Completed');
@@ -57,7 +57,7 @@ function Chat() {
          console.log("Anlysing doc...")
          setLoading(true);
 
-         let analysedocumentresponse = await axios.get('http://localhost:8081/actions/analyse',{headers:{"Token-DocsAI":`Bearer ${localStorage.getItem('token')}`}})
+         let analysedocumentresponse = await axios.get(`${process.env.REACT_APP_URL}/actions/analyse`,{headers:{"Token-DocsAI":`Bearer ${localStorage.getItem('token')}`}})
 
            setLoading(false);
            toast.success('Document Analysing Completed');
@@ -86,7 +86,7 @@ function Chat() {
     setQueryinput("")
     setQnaarray((qnaarray)=>{return [...qnaarray,"Q."+inputq+"?"]})
     
-    let queryoutput = await axios.post('http://localhost:8081/actions/query',{
+    let queryoutput = await axios.post(`${process.env.REACT_APP_URL}/actions/query`,{
       "query":inputq
   },{headers:{"Token-DocsAI":`Bearer ${localStorage.getItem('token')}`}})
 

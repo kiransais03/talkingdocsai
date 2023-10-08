@@ -25,7 +25,7 @@ function Signupform () {
 
             setLoading(true);
 
-            let response = axios.post("http://localhost:8081/user/register",{
+            let response = axios.post(`${process.env.REACT_APP_URL}/user/register`,{
                 "name": fname,
                "username": username,
                "password": password,

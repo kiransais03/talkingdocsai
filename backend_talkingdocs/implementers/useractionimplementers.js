@@ -21,7 +21,7 @@ const registerUser = async (req, res) => {
   if (isValid.error) {
     return res.status(400).send({
       status: 400,
-      message: "Invalid Input",
+      message: "Invalid Inputfsa",
       data: isValid.error,
     });
   }

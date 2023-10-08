@@ -26,7 +26,8 @@ const Loginform =()=>{
             console.log("Logging in....")
             setLoading(true);
 
-            let loginUserdata = await axios.post('http://localhost:8081/user/login',{"loginId" : email,
+            // console.log(`${process.env.REACT_APP_URL}/user/login`,process.env.REACT_APP_URL)
+            let loginUserdata = await axios.post(`${process.env.REACT_APP_URL}/user/login`,{"loginId" : email,
             "password" : password})
 
           
