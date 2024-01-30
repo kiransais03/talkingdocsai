@@ -71,18 +71,16 @@
 --And again a problem is ,Pine cone is taking time to delete and create a new Index,in this time it is throwing error.
 
 --For this I hava analysed the average time taken by Pinecone to delete and create Index as 20seconds.So I made a promise and In it used a setTimeout   Function of 20secs then that promise will be resolved.
+
 --By this way I have overcome the problem in Index creation of Pinecone
 
 ### Deployed Links : Using Vercel Hosting
 
 #### --Backend : https://talkingdocsai-backend.onrender.com/
-(It is working fine)
-  <!-- (The issue with vercel is it will not work as a server.If we make a request it just start server and provide response again it will stop.Becasue of this MongoDb is causing issues) -->
 
 #### --Frontend : https://talkingdocsai-frontend.vercel.app/
-  (It is working fine)
 
-### Assignment Points Implemented :
+### Points Implemented :
 
 #### --Frontend :
 -Uploading a PDF documents
